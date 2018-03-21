@@ -9,6 +9,8 @@
 
         <!--Create Database schema on Startup-->
         <property name="hbm2ddl.auto">create</property>
+        <!--Show hibernate queries-->
+        <property name="show_sql">true</property>
 
         <!-- Annotated entity classes-->
         <mapping class="com.ajinkya.contactmgr.model.Contact" />
