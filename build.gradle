@@ -1,0 +1,16 @@
+group 'com.ajinkya'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile('org.hibernate:hibernate-core:5.2.15.Final')
+    compile('com.h2database:h2:1.4.197')
+}
