@@ -8,6 +8,9 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.service.ServiceRegistry;
 
+import javax.persistence.criteria.CriteriaQuery;
+import java.util.List;
+
 public class Application {
     private static final SessionFactory sessionFactory = buildSessionFactory();
 
@@ -22,6 +25,23 @@ public class Application {
                 .withPhone(9820098200L)
                 .build();
         save(contact);
+
+        // Display contacts from DB
+        fecthAllContacts().stream().forEach(System.out::println);
+    }
+
+    @SuppressWarnings("unchecked")
+    public static List<Contact> fecthAllContacts() {
+        Session session = sessionFactory.openSession();
+
+        // create Criteria
+        CriteriaQuery<Contact> criteriaQuery = session.getCriteriaBuilder().createQuery(Contact.class);
+        criteriaQuery.from(Contact.class);
+
+        List<Contact> contacts = session.createQuery(criteriaQuery).getResultList();
+        session.close();
+
+        return contacts;
     }
 
     public static void save(Contact contact) {
